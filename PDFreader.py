@@ -3,9 +3,18 @@ import PyPDF2
 import re
 import os
 
+def check_if_PDF(file_list):
+
+    pattern = r'*.pdf'
+
+    r = re.compile('.*pdf')
+    onlyPDF_list = list(filter(r.match, file_list))  # Read Note below
+    print(onlyPDF_list)
+    return onlyPDF_list
+
+
 
 def package_num_finder(pdfFile):
-
 
     dir = 'D:\\Python\PDFInPOSTreader\pdfy\{}'.format(pdfFile)
 
@@ -35,13 +44,14 @@ def package_num_finder(pdfFile):
 
 pdf_list = os.listdir('D:\\Python\PDFInPOSTreader\pdfy')
 print(pdf_list)
-
+only_pdf_list = check_if_PDF(pdf_list)
 all_packages = []
 
-for i in pdf_list:
+for i in only_pdf_list:
     pack_no = package_num_finder(i)
     all_packages.append(pack_no)
 
-print(all_packages)
+print('InPost package numbers: ' + str(all_packages))
+
 
 
