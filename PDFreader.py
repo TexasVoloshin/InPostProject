@@ -9,7 +9,9 @@ def check_if_PDF(file_list):
     onlyPDF_list = list(filter(r.match, file_list))
 
     if len(onlyPDF_list) == 0:
-        raise Exception("Folder is empty. There is no file to work on!")
+        raise Exception("Folder is empty. There is no pdf file to work on!")
+        sys.exit()
+
 
     print(onlyPDF_list)
     return onlyPDF_list
@@ -31,7 +33,7 @@ def package_num_finder(pdfFile):
         sys.exit()
     with f:
         pdf_reader = PyPDF2.PdfFileReader(f)
-         #no_pages = pdf_reader.numPages
+        #no_pages = pdf_reader.numPages
         # print(no_pages)
         page_one = pdf_reader.getPage(0)
         page_text = page_one.extractText()
